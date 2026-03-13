@@ -1,6 +1,6 @@
 from typing import TypedDict, List
 from langchain_core.messages import HumanMessage
-# from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_groq import ChatGroq
 
 from langgraph.graph import StateGraph, START, END
@@ -11,9 +11,9 @@ load_dotenv()
 class AgentState(TypedDict):
     messages: List[HumanMessage]
 
-# llm =  ChatGoogleGenerativeAI(model="gemini-2.0-flash")
+llm =  ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 
-llm = ChatGroq(model="llama-3.3-70b-versatile")
+# llm = ChatGroq(model="llama-3.3-70b-versatile")
 
 def process(state: AgentState) -> AgentState:
     response = llm.invoke(state["messages"])
